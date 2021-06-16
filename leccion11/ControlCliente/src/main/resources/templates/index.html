@@ -13,7 +13,7 @@ and open the template in the editor.
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
-        <a th:href="@{/agregar}">[[#{persona.crear}]]</a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}">[[#{persona.crear}]]</a>
         <br/>
         <div th:if="${personas != null and !personas.empty}">
             <table>
@@ -22,8 +22,8 @@ and open the template in the editor.
                     <th>[[#{persona.apellido}]]</th>
                     <th>[[#{persona.email}]]</th>
                     <th>[[#{persona.telefono}]]</th>
-                    <th>[[#{accion.editar}]]</th>
-                    <th>[[#{accion.eliminar}]]</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.editar}]]</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">[[#{accion.eliminar}]]</th>
                 </thead>
                 <tbody>
 
@@ -32,8 +32,8 @@ and open the template in the editor.
                         <td th:text="${persona.apellido}"></td>
                         <td th:text="${persona.email}"></td>
                         <td th:text="${persona.telefono}"></td>
-                        <td><a th:href="@{/editar/} + ${persona.IdPersona}" th:text="#{accion.editar}"/></td>
-                        <td><a th:href="@{/eliminar(IdPersona = ${persona.IdPersona})}" th:text="#{accion.eliminar}"/></td>
+                        <td sec:authorize="hasRole('ROLE_ADMIN')" ><a th:href="@{/editar/} + ${persona.IdPersona}" th:text="#{accion.editar}"/></td>
+                        <td sec:authorize="hasRole('ROLE_ADMIN')" ><a th:href="@{/eliminar(IdPersona = ${persona.IdPersona})}" th:text="#{accion.eliminar}"/></td>
                     </tr>
                     
                 </tbody>
