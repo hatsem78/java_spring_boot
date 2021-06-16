@@ -1,12 +1,14 @@
 package ejemplo2.web;
 import ejemplo2.domain.Persona;
 import ejemplo2.service.PersonaService;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -42,11 +44,14 @@ public class ControladorInicio {
     
     
     @PostMapping("/guardar")
-    public String guardar(Persona persona){
+    public String guardar(@Valid Persona persona, Errors errores){
+        if(errores.hasErrors()){
+            return "modificar";
+        }
         personaService.guardar(persona);
         return "redirect:/";
-    
     }
+    
     
     @GetMapping("/editar/{idPersona}")
     public String editar(Persona persona, Model model){
