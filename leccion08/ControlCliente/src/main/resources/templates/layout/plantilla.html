@@ -8,12 +8,17 @@
     </head>
     <body>
         <header th:fragment="header">
-            <h1>Control de Cliente</h1>
+            <h1 th:text="#{plantilla.titulo}">/h1>
             
         </header>
         
         <footer th:fragment="footer">
-            <p> Derechos Reservados <a href="#" target="_blank"/> Hatsembiller Octavio Daniel</p>
+            <div>
+                <br/><!-- comment -->
+                <a th:href="@{/(lang=es)}" th:text="ES"/> |
+                    <a th:href="@{/(lang=en)}" th:text="EN"/>
+            </div>
+            <p> [[#{plantilla.pie_pagina}]]  <a href="#" target="_blank"/> Hatsembiller Octavio Daniel</a></p>
         </footer>
     </body>
 </html>

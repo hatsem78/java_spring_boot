@@ -13,18 +13,17 @@ and open the template in the editor.
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
-        <a th:href="@{/agregar}">Agregar Personas</a>
+        <a th:href="@{/agregar}">[[#{persona.crear}]]</a>
         <br/>
         <div th:if="${personas != null and !personas.empty}">
             <table>
                 <thead>
-                    <th>Nombre</th>
-                    <th>Apellido:</th>
-                    <th>Apellido:</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
-                    <th>Editar</th>
-                    <th>Modificar</th>
+                    <th>[[#{persona.nombre}]]</th>
+                    <th>[[#{persona.apellido}]]</th>
+                    <th>[[#{persona.email}]]</th>
+                    <th>[[#{persona.telefono}]]</th>
+                    <th>[[#{accion.editar}]]</th>
+                    <th>[[#{accion.eliminar}]]</th>
                 </thead>
                 <tbody>
 
@@ -33,16 +32,15 @@ and open the template in the editor.
                         <td th:text="${persona.apellido}"></td>
                         <td th:text="${persona.email}"></td>
                         <td th:text="${persona.telefono}"></td>
-                        <td th:text="${persona.telefono}"></td>
-                        <td><a th:href="@{/editar/} + ${persona.IdPersona}" th:text="Editar"/></td>
-                        <td><a th:href="@{/eliminar(IdPersona = ${persona.IdPersona})}" th:text="Eliminar"/></td>
+                        <td><a th:href="@{/editar/} + ${persona.IdPersona}" th:text="#{accion.editar}"/></td>
+                        <td><a th:href="@{/eliminar(IdPersona = ${persona.IdPersona})}" th:text="#{accion.eliminar}"/></td>
                     </tr>
                     
                 </tbody>
             </table>
         </div>
         <div th:if="${personas == null or personas.empty}">
-            pedro tiene razon
+            [[#{persona.lista_vacia}]]
         </div>
         
         <header th:replace="layout/plantilla :: footer"/>
