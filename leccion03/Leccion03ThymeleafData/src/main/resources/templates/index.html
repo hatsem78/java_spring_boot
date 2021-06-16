@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Inicio</h1>
+        <br/>
+        <div th:if="${personas != null and !personas.empty}">
+            <table>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Apellido:</th>
+                    <th>Apellido:</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                </thead>
+                <tbody>
+
+                    <tr th:each="persona : ${personas}">
+                        <td th:text="${persona.nombre}"></td>
+                        <td th:text="${persona.apellido}"></td>
+                        <td th:text="${persona.email}"></td>
+                        <td th:text="${persona.telefono}"></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div th:elseif="${personas == null and personas.empty}">
+            pedro tiene razon
+        </div>
+        
+            
+    </body>
+</html>
