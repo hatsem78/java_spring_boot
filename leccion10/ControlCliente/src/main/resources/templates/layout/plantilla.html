@@ -19,6 +19,9 @@
                     <a th:href="@{/(lang=en)}" th:text="EN"/>
             </div>
             <p> [[#{plantilla.pie_pagina}]]  <a href="#" target="_blank"/> Hatsembiller Octavio Daniel</a></p>
+            <form method="post" th:action="@{/logout}">
+                <a href="#" onclick="this.parentNode.submit();">Logout</a>
+            </form>
         </footer>
     </body>
 </html>
